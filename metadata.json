@@ -1,0 +1,6 @@
+{
+  "name": "The Royal Study — 3D Chess Puzzle",
+  "description": "Edição 3D interativa do jogo de tabuleiro The Royal Study (Philos), com peças de madeira torneadas, 60 cartas de objetivo, ampulheta 3D e solucionador matemático nos Níveis 1, 2, 3 e Desafio Bônus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,6 @@
+{
+  "summary": "Plano de implementação completo para o jogo 3D The Royal Study em Three.js, cobrindo todas as regras oficiais do PDF (Níveis 1, 2 e 3, Desafio Bônus de 2 cartas, Modo Competitivo com Ampulheta e Modo Solo/Cooperativo com solver BFS exato) e direção visual fiel às fotos do jogo físico da Philos.",
+  "updatedAt": "2026-10-17T14:07:44.149887148Z",
+  "requestFeedback": true,
+  "userFacing": true
+}
