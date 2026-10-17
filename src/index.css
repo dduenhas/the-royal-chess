@@ -12,7 +12,6 @@
     background-color: #1b120c;
     color: #f5efe6;
     overflow: hidden;
-    user-select: none;
   }
 }
 
@@ -28,4 +27,17 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
 }
+
+/* Hide scrollbars while preserving smooth scroll capability */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 

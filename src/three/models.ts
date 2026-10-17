@@ -158,21 +158,38 @@ export function createChessPieceMesh(
       ]);
       addCollarRing(1.15, 0.24, 0.038);
 
-      // Mitre head with carved diagonal slot (constructed as lower mitre + upper split mitre + dark groove)
-      const mitreGeo = new THREE.SphereGeometry(0.26, 32, 24);
+      // Mitre head with a real inward-carved diagonal V-slot (no protruding plate)
+      const mitreGeo = new THREE.SphereGeometry(0.26, 64, 48);
       mitreGeo.scale(1, 1.38, 1);
+
+      const posAttr = mitreGeo.attributes.position;
+      for (let i = 0; i < posAttr.count; i++) {
+        let vx = posAttr.getX(i);
+        const vy = posAttr.getY(i);
+        let vz = posAttr.getZ(i);
+
+        // Diagonal notch plane across the upper front of the mitre
+        const slitCenterY = 0.05 + vz * 0.32;
+        const distToSlit = Math.abs(vy - slitCenterY);
+        const halfWidth = 0.042;
+
+        if (vz > -0.02 && distToSlit < halfWidth) {
+          const depthProfile = 1 - distToSlit / halfWidth;
+          const frontFade = THREE.MathUtils.smoothstep(vz, -0.02, 0.07);
+          const indentFactor = 1 - 0.55 * depthProfile * frontFade;
+          vx *= indentFactor;
+          vz *= indentFactor;
+          posAttr.setXYZ(i, vx, vy, vz);
+        }
+      }
+      posAttr.needsUpdate = true;
+      mitreGeo.computeVertexNormals();
+
       const mitre = new THREE.Mesh(mitreGeo, mats.pieceWoodMat);
       mitre.position.y = 1.44;
       mitre.castShadow = true;
       mitre.receiveShadow = true;
       group.add(mitre);
-
-      // Carved slot indentation across the mitre
-      const slotGeo = new THREE.BoxGeometry(0.54, 0.055, 0.26);
-      const slotMesh = new THREE.Mesh(slotGeo, mats.darkWoodMat);
-      slotMesh.position.set(0, 1.52, 0.12);
-      slotMesh.rotation.x = -0.35;
-      group.add(slotMesh);
 
       // Top knop sphere
       const knopGeo = new THREE.SphereGeometry(0.075, 20, 20);

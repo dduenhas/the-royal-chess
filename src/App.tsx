@@ -15,6 +15,9 @@ import {
   ArrowRight,
   RefreshCw,
   Music,
+  GraduationCap,
+  Menu,
+  X,
 } from 'lucide-react';
 import {
   ActiveObjectiveCard,
@@ -40,6 +43,7 @@ import { soundFX } from './game/audio';
 import { CameraPreset, RoyalStudyCanvas } from './three/RoyalStudyCanvas';
 import { ObjectiveCardPreview } from './components/ObjectiveCardPreview';
 import { RulesModal } from './components/RulesModal';
+import { PedagogicalModal } from './components/PedagogicalModal';
 
 interface HistoryEntry {
   board: BoardState;
@@ -75,6 +79,8 @@ export default function App() {
   const [sfxEnabled, setSfxEnabled] = useState<boolean>(true);
   const [dockCollapsed, setDockCollapsed] = useState<boolean>(false);
   const [rulesOpen, setRulesOpen] = useState<boolean>(false);
+  const [pedagogicalOpen, setPedagogicalOpen] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   // Deck & Board State (Setup rule: Card 0 sets initial pieces on box, Card 1+ are objectives)
   const [deckOrder, setDeckOrder] = useState<ObjectiveCardData[]>(() => [
@@ -149,13 +155,13 @@ export default function App() {
       ) {
         return;
       }
-      if (e.key.toLowerCase() === 'h' && !rulesOpen) {
+      if (e.key.toLowerCase() === 'h' && !rulesOpen && !pedagogicalOpen) {
         setDockCollapsed((prev) => !prev);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [rulesOpen]);
+  }, [rulesOpen, pedagogicalOpen]);
 
   // Clear demo timer on unmount and auto-start music on first user interaction
   useEffect(() => {
@@ -911,85 +917,223 @@ export default function App() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#1b120c] select-none">
-      {/* 1. Strict 3-Zone Top Navigation Bar Contract */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between gap-8 px-6 py-3.5 bg-[#140d08]/95 border-b border-[#36251a]">
-        {/* Zone 1: Single text element wordmark */}
-        <a
-          href="#top"
-          onClick={(e) => {
-            e.preventDefault();
-            setCameraPreset('TABLETOP');
-          }}
-          className="font-display italic text-2xl font-bold tracking-tight text-white whitespace-nowrap shrink-0"
+      {/* 1. Responsive Top Navigation Bar (Fluid clamp() on Desktop/Tablet + Vertical Menu on Mobile, Zero Scrollbars) */}
+      <header className="fixed top-0 left-0 right-0 z-30 bg-[#140d08]/95 border-b border-[#36251a]">
+        <div
+          className="flex items-center justify-between px-3 sm:px-5 lg:px-6 py-2.5 sm:py-3"
+          style={{ gap: 'clamp(0.5rem, 1.5vw, 1.75rem)' }}
         >
-          The Royal Study
-        </a>
+          {/* Zone 1: Wordmark */}
+          <a
+            href="#top"
+            onClick={(e) => {
+              e.preventDefault();
+              setCameraPreset('TABLETOP');
+              setMobileMenuOpen(false);
+            }}
+            className="font-display italic font-bold tracking-tight text-white whitespace-nowrap shrink-0"
+            style={{ fontSize: 'clamp(1.1rem, 2vw, 1.5rem)' }}
+          >
+            The Royal Study
+          </a>
 
-        {/* Zone 2: 5 concise single-line text navigation links */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#cbb8a4]">
-          <button
-            type="button"
-            onClick={() => drawNextChallenge(1, bonusTwoCards, false)}
-            className={`hover:text-white transition-colors whitespace-nowrap shrink-0 ${
-              level === 1
-                ? 'text-[#facc15] underline underline-offset-8 decoration-2'
-                : ''
-            }`}
+          {/* Zone 2: Desktop / Tablet Horizontal Navigation with fluid clamp() sizing (Never creates a scrollbar) */}
+          <nav
+            className="hidden md:flex items-center font-medium text-[#cbb8a4] shrink-0"
+            style={{
+              fontSize: 'clamp(0.74rem, 1.05vw, 0.875rem)',
+              gap: 'clamp(0.65rem, 1.5vw, 1.5rem)',
+            }}
           >
-            Nível 1
-          </button>
-          <button
-            type="button"
-            onClick={() => drawNextChallenge(2, bonusTwoCards, false)}
-            className={`hover:text-white transition-colors whitespace-nowrap shrink-0 ${
-              level === 2
-                ? 'text-[#facc15] underline underline-offset-8 decoration-2'
-                : ''
-            }`}
-          >
-            Nível 2
-          </button>
-          <button
-            type="button"
-            onClick={() => drawNextChallenge(3, bonusTwoCards, false)}
-            className={`hover:text-white transition-colors whitespace-nowrap shrink-0 ${
-              level === 3
-                ? 'text-[#facc15] underline underline-offset-8 decoration-2'
-                : ''
-            }`}
-          >
-            Nível 3
-          </button>
-          <button
-            type="button"
-            onClick={() => drawNextChallenge(level, !bonusTwoCards, false)}
-            className={`hover:text-white transition-colors whitespace-nowrap shrink-0 ${
-              bonusTwoCards
-                ? 'text-[#38bdf8] underline underline-offset-8 decoration-2'
-                : ''
-            }`}
-          >
-            Desafio Bônus
-          </button>
-          <button
-            type="button"
-            onClick={() => setRulesOpen(true)}
-            className="hover:text-white transition-colors whitespace-nowrap shrink-0"
-          >
-            Regras Oficiais
-          </button>
-        </nav>
+            <button
+              type="button"
+              onClick={() => drawNextChallenge(1, bonusTwoCards, false)}
+              className={`hover:text-white transition-colors whitespace-nowrap cursor-pointer ${
+                level === 1
+                  ? 'text-[#facc15] underline underline-offset-8 decoration-2'
+                  : ''
+              }`}
+            >
+              Nível 1
+            </button>
+            <button
+              type="button"
+              onClick={() => drawNextChallenge(2, bonusTwoCards, false)}
+              className={`hover:text-white transition-colors whitespace-nowrap cursor-pointer ${
+                level === 2
+                  ? 'text-[#facc15] underline underline-offset-8 decoration-2'
+                  : ''
+              }`}
+            >
+              Nível 2
+            </button>
+            <button
+              type="button"
+              onClick={() => drawNextChallenge(3, bonusTwoCards, false)}
+              className={`hover:text-white transition-colors whitespace-nowrap cursor-pointer ${
+                level === 3
+                  ? 'text-[#facc15] underline underline-offset-8 decoration-2'
+                  : ''
+              }`}
+            >
+              Nível 3
+            </button>
+            <button
+              type="button"
+              onClick={() => drawNextChallenge(level, !bonusTwoCards, false)}
+              className={`hover:text-white transition-colors whitespace-nowrap cursor-pointer ${
+                bonusTwoCards
+                  ? 'text-[#38bdf8] underline underline-offset-8 decoration-2'
+                  : ''
+              }`}
+            >
+              Desafio Bônus
+            </button>
+            <button
+              type="button"
+              onClick={() => setPedagogicalOpen(true)}
+              className="flex items-center gap-1.5 text-[#facc15] hover:text-white transition-colors whitespace-nowrap cursor-pointer font-semibold"
+            >
+              <GraduationCap className="w-4 h-4 shrink-0" />
+              <span>Área Pedagógica</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setRulesOpen(true)}
+              className="hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+            >
+              Regras Oficiais
+            </button>
+          </nav>
 
-        {/* Zone 3: 1 primary action */}
-        <div className="flex items-center gap-3 shrink-0">
-          <button
-            type="button"
-            onClick={() => drawNextChallenge(level, bonusTwoCards, true)}
-            className="px-4 py-2 text-xs font-semibold text-[#160f0a] bg-[#d4a359] rounded-lg hover:bg-[#e2b36b] transition-colors whitespace-nowrap shrink-0"
-          >
-            Nova Partida
-          </button>
+          {/* Zone 3: Actions & Mobile Vertical Menu Trigger */}
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => setPedagogicalOpen(true)}
+              className="md:hidden flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-semibold text-[#facc15] bg-[#241811] border border-[#4a3425] rounded-lg hover:bg-[#332218] transition-colors whitespace-nowrap"
+            >
+              <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+              <span>Área Pedagógica</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                drawNextChallenge(level, bonusTwoCards, true);
+                setMobileMenuOpen(false);
+              }}
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-[#160f0a] bg-[#d4a359] rounded-lg hover:bg-[#e2b36b] font-semibold transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              style={{ fontSize: 'clamp(0.7rem, 0.95vw, 0.78rem)' }}
+            >
+              Nova<span className="hidden sm:inline"> Partida</span>
+            </button>
+
+            {/* Mobile Vertical Menu Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="md:hidden p-1.5 rounded-lg bg-[#241811] text-[#e2d5c6] hover:text-white border border-[#3d2b1f] transition-colors"
+              aria-label="Alternar menu de navegação"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-4 h-4" />
+              ) : (
+                <Menu className="w-4 h-4" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Vertical Collapsible Navigation Menu for Mobile (< md) */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden flex flex-col gap-1 px-3 pb-3 pt-1 bg-[#140d08] border-t border-[#2c1e15] text-xs font-medium text-[#d6c5b3]">
+            <div className="grid grid-cols-2 gap-1.5 pt-1">
+              <button
+                type="button"
+                onClick={() => {
+                  drawNextChallenge(1, bonusTwoCards, false);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-3 py-2 rounded-lg text-left border transition-colors ${
+                  level === 1
+                    ? 'bg-[#2a1d13] border-[#d4a359] text-[#facc15] font-semibold'
+                    : 'bg-[#1c130d] border-[#2e2017] text-[#cbb8a4]'
+                }`}
+              >
+                Nível 1 (Fixo)
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  drawNextChallenge(2, bonusTwoCards, false);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-3 py-2 rounded-lg text-left border transition-colors ${
+                  level === 2
+                    ? 'bg-[#2a1d13] border-[#d4a359] text-[#facc15] font-semibold'
+                    : 'bg-[#1c130d] border-[#2e2017] text-[#cbb8a4]'
+                }`}
+              >
+                Nível 2 (Giro 90°)
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  drawNextChallenge(3, bonusTwoCards, false);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-3 py-2 rounded-lg text-left border transition-colors ${
+                  level === 3
+                    ? 'bg-[#2a1d13] border-[#d4a359] text-[#facc15] font-semibold'
+                    : 'bg-[#1c130d] border-[#2e2017] text-[#cbb8a4]'
+                }`}
+              >
+                Nível 3 (Espelho)
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  drawNextChallenge(level, !bonusTwoCards, false);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-3 py-2 rounded-lg text-left border transition-colors ${
+                  bonusTwoCards
+                    ? 'bg-[#162736] border-[#38bdf8] text-[#38bdf8] font-semibold'
+                    : 'bg-[#1c130d] border-[#2e2017] text-[#cbb8a4]'
+                }`}
+              >
+                Desafio Bônus (2 Cartas)
+              </button>
+            </div>
+
+            <div className="flex items-center gap-1.5 pt-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setPedagogicalOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#271b13] border border-[#4a3425] text-[#facc15] font-semibold"
+              >
+                <GraduationCap className="w-4 h-4" />
+                <span>Área Pedagógica (BNCC)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setRulesOpen(true);
+                  setMobileMenuOpen(false);
+                }}
+                className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#1c130d] border border-[#38261b] text-[#e2d5c6]"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Regras Oficiais</span>
+              </button>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* 2. Full-Bleed 3D WebGL Viewport (100% Unobstructed Center) */}
@@ -1010,11 +1154,11 @@ export default function App() {
 
       {/* 3. Unified Collapsible Bottom Control Dock (Zero Side-Panel Clutter) */}
       <div
-        className="fixed left-1/2 -translate-x-1/2 z-30 w-full max-w-[min(940px,94vw)] transition-transform duration-200 ease-out"
+        className="fixed left-1/2 z-30 w-full max-w-[min(940px,96vw)] lg:max-w-[min(940px,94vw)] transition-transform duration-200 ease-out"
         style={{
-          bottom: '16px',
+          bottom: '10px',
           transform: dockCollapsed
-            ? 'translate(-50%, calc(100% - 34px))'
+            ? 'translate(-50%, calc(100% - 32px))'
             : 'translate(-50%, 0)',
         }}
       >
@@ -1023,57 +1167,63 @@ export default function App() {
           <button
             type="button"
             onClick={() => setDockCollapsed((prev) => !prev)}
-            className="flex items-center gap-1.5 px-4 py-1 rounded-t-lg bg-[#18100b] border border-b-0 border-[#3d2b1f] text-xs font-medium text-[#d6c5b3] hover:text-white transition-colors whitespace-nowrap shrink-0"
+            className="flex items-center gap-1.5 px-3.5 sm:px-4 py-1 rounded-t-lg bg-[#18100b] border border-b-0 border-[#3d2b1f] text-[11px] sm:text-xs font-medium text-[#d6c5b3] hover:text-white transition-colors whitespace-nowrap shrink-0"
           >
             {dockCollapsed ? (
               <>
                 <ChevronUp className="w-3.5 h-3.5 text-[#d4a359]" />
-                <span>Mostrar Controles (H)</span>
+                <span>Mostrar Controles</span>
+                <span className="hidden sm:inline">(H)</span>
               </>
             ) : (
               <>
                 <ChevronDown className="w-3.5 h-3.5 text-[#d4a359]" />
-                <span>Ocultar Controles (H)</span>
+                <span>Ocultar Controles</span>
+                <span className="hidden sm:inline">(H)</span>
               </>
             )}
           </button>
         </div>
 
-        {/* Main Dock Surface (Solid dark wood tone — no backdrop-filter over WebGL) */}
-        <div className="rounded-xl bg-[#18100b]/95 border border-[#3d2b1f] p-4 shadow-2xl">
+        {/* Main Dock Surface (Solid dark wood tone — no scrollbar on mobile or desktop) */}
+        <div className="rounded-xl bg-[#18100b]/95 border border-[#3d2b1f] p-2.5 sm:p-3.5 lg:p-4 shadow-2xl max-h-[44vh] sm:max-h-[48vh] lg:max-h-none overflow-y-auto no-scrollbar lg:overflow-visible">
           {/* Top Row: Clean Unboxed Metadata & Mode / Camera Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#2e2017]">
+          <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 pb-2 sm:pb-3 border-b border-[#2e2017]">
             {/* Unboxed Metadata with typographic separators */}
-            <div className="flex flex-wrap items-center gap-2 text-xs text-[#cbb8a4] font-mono tabular-nums">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-[#cbb8a4] font-mono tabular-nums">
               <span className="font-sans font-semibold text-white">
                 {gameMode === 'SOLO'
                   ? `Pontos: ${scores[0]}/${WINNING_SCORE}`
                   : gameMode === 'VS_BOT'
-                  ? `Você ${scores[0]} · ${scores[1]} Bot (Meta: ${WINNING_SCORE})`
-                  : `J1 ${scores[0]} · ${scores[1]} J2 (Meta: ${WINNING_SCORE})`}
+                  ? `Você ${scores[0]} · ${scores[1]} Bot`
+                  : `J1 ${scores[0]} · ${scores[1]} J2`}
               </span>
               <span aria-hidden="true">·</span>
               <span>
                 Lances: <strong className="text-white">{movesUsed}</strong>
-                {declaredMoves !== null ? ` / Meta: ${declaredMoves}` : ''}
+                {declaredMoves !== null ? `/${declaredMoves}` : ''}
               </span>
               <span aria-hidden="true">·</span>
-              <span>Baralho: {Math.max(0, 60 - deckCursor)}/60</span>
-              <span aria-hidden="true">·</span>
+              <span className="hidden xs:inline sm:inline">
+                Baralho: {Math.max(0, 60 - deckCursor)}/60
+              </span>
+              <span aria-hidden="true" className="hidden xs:inline sm:inline">
+                ·
+              </span>
               <span className="font-sans text-[#d4a359]">
-                Nível {level}
-                {bonusTwoCards ? ' + Bônus (2 Cartas)' : ''}
+                Nv.{level}
+                {bonusTwoCards ? '+Bônus' : ''}
               </span>
             </div>
 
             {/* Segmented Interactive Mode & Camera Controls */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <div className="flex items-center gap-0.5 p-0.5 bg-[#241811] rounded-lg border border-[#38261b]">
                 {(
                   [
-                    ['SOLO', 'Solo / Coop'],
+                    ['SOLO', 'Solo'],
                     ['VS_BOT', 'Vs. Bot'],
-                    ['PASS_PLAY', '2 Jogadores'],
+                    ['PASS_PLAY', '2 Jog.'],
                   ] as [GameMode, string][]
                 ).map(([mKey, mLabel]) => (
                   <button
@@ -1084,7 +1234,7 @@ export default function App() {
                       setScores([0, 0]);
                       setPhase('ESTIMATE');
                     }}
-                    className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+                    className={`px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
                       gameMode === mKey
                         ? 'bg-[#d4a359] text-[#160f0a] font-semibold'
                         : 'text-[#cbb8a4] hover:text-white'
@@ -1097,7 +1247,7 @@ export default function App() {
 
               {/* Camera View Switcher */}
               <div className="flex items-center gap-0.5 p-0.5 bg-[#241811] rounded-lg border border-[#38261b]">
-                <Camera className="w-3.5 h-3.5 text-[#9c8773] ml-1.5 mr-0.5 shrink-0" />
+                <Camera className="w-3.5 h-3.5 text-[#9c8773] ml-1.5 mr-0.5 hidden sm:block shrink-0" />
                 {(
                   [
                     ['TABLETOP', 'Mesa'],
@@ -1109,7 +1259,7 @@ export default function App() {
                     key={cKey}
                     type="button"
                     onClick={() => setCameraPreset(cKey)}
-                    className={`px-2 py-1 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+                    className={`px-2 py-1 text-[11px] sm:text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
                       cameraPreset === cKey
                         ? 'bg-[#38261b] text-white'
                         : 'text-[#b8a38e] hover:text-white'
@@ -1123,16 +1273,26 @@ export default function App() {
               <button
                 type="button"
                 onClick={handleLoadOfficialExample}
-                className="px-2.5 py-1 text-xs font-medium rounded-lg bg-[#241811] hover:bg-[#332218] text-[#e2d5c6] border border-[#38261b] transition-colors whitespace-nowrap shrink-0"
+                className="px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-medium rounded-lg bg-[#241811] hover:bg-[#332218] text-[#e2d5c6] border border-[#38261b] transition-colors whitespace-nowrap shrink-0"
                 title="Carregar o desafio de exemplo oficial da Página 2 do PDF"
               >
-                Exemplo do Manual
+                Exemplo<span className="hidden md:inline"> do Manual</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setPedagogicalOpen(true)}
+                className="flex items-center gap-1 px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs font-semibold rounded-lg bg-[#241811] hover:bg-[#332218] text-[#facc15] border border-[#4a3425] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                title="Abrir Área Pedagógica (Aspectos Formais, Filosóficos e BNCC)"
+              >
+                <GraduationCap className="w-3.5 h-3.5 shrink-0" />
+                <span>Área Pedagógica</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setRulesOpen(true)}
-                className="p-1.5 rounded-lg bg-[#241811] hover:bg-[#332218] text-[#cbb8a4] hover:text-white border border-[#38261b] transition-colors"
+                className="p-1.5 rounded-lg bg-[#241811] hover:bg-[#332218] text-[#cbb8a4] hover:text-white border border-[#38261b] transition-colors cursor-pointer"
                 title="Abrir Regras Oficiais (PDF)"
                 aria-label="Abrir Regras Oficiais"
               >
@@ -1140,11 +1300,11 @@ export default function App() {
               </button>
 
               {/* Music Toggle + Volume Slider + SFX Toggle */}
-              <div className="flex items-center gap-2 px-2.5 py-1 rounded-lg bg-[#241811] border border-[#38261b]">
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1 rounded-lg bg-[#241811] border border-[#38261b]">
                 <button
                   type="button"
                   onClick={toggleMusic}
-                  className={`flex items-center gap-1 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+                  className={`flex items-center gap-1 text-[11px] sm:text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
                     musicEnabled ? 'text-[#facc15]' : 'text-[#8c7865] line-through'
                   }`}
                   title={
@@ -1155,7 +1315,7 @@ export default function App() {
                   aria-label="Alternar trilha sonora"
                 >
                   <Music className="w-3.5 h-3.5" />
-                  <span>Música</span>
+                  <span className="hidden sm:inline">Música</span>
                 </button>
                 <input
                   type="range"
@@ -1164,13 +1324,13 @@ export default function App() {
                   step={0.02}
                   value={musicEnabled ? musicVolume : 0}
                   onChange={handleVolumeChange}
-                  className="w-16 h-1.5 accent-[#d4a359] bg-[#3d2b1f] rounded-lg cursor-pointer"
+                  className="w-12 sm:w-16 h-1.5 accent-[#d4a359] bg-[#3d2b1f] rounded-lg cursor-pointer"
                   title={`Volume da música: ${Math.round(
                     (musicEnabled ? musicVolume : 0) * 100
                   )}%`}
                   aria-label="Volume da trilha sonora"
                 />
-                <span className="text-[11px] font-mono tabular-nums text-[#cbb8a4] w-8 text-right">
+                <span className="text-[10px] sm:text-[11px] font-mono tabular-nums text-[#cbb8a4] w-7 sm:w-8 text-right">
                   {Math.round((musicEnabled ? musicVolume : 0) * 100)}%
                 </span>
               </div>
@@ -1196,7 +1356,7 @@ export default function App() {
           </div>
 
           {/* Middle Row: Active Objective Card(s) + Dynamic Gameplay Phase Controls */}
-          <div className="mt-3 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <div className="mt-2.5 sm:mt-3 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-2.5 sm:gap-4">
             {/* Left: Active Objective Card(s) 2D Tactile Inspector & Level 2/3 Rotate/Mirror Actions */}
             <div className="flex flex-wrap items-center gap-3 shrink-0">
               {activeCards.map((ac, idx) => (
@@ -1224,8 +1384,8 @@ export default function App() {
 
             {/* Right: Phase-Specific Action Panel */}
             <div className="flex-1 flex flex-col justify-between bg-[#21160f] border border-[#36251a] rounded-lg p-3">
-              {/* Status / Instruction Line */}
-              <p className="text-xs text-[#e2d5c6] leading-snug mb-2.5">
+              {/* Status / Instruction Line (Selectable text) */}
+              <p className="text-xs text-[#e2d5c6] leading-snug mb-2.5 select-text">
                 {lastActionNote}
               </p>
 
@@ -1437,7 +1597,7 @@ export default function App() {
                   </div>
 
                   {/* Step-by-step Optimal Solution Summary */}
-                  <div className="text-[11px] text-[#b8a38e] font-mono border-t border-[#36251a] pt-1.5">
+                  <div className="text-[11px] text-[#b8a38e] font-mono border-t border-[#36251a] pt-1.5 select-text">
                     <span className="text-white font-sans font-medium">
                       Solução Ótima ({optimalSolution.minMoves} lances):{' '}
                     </span>
@@ -1457,6 +1617,12 @@ export default function App() {
         isOpen={rulesOpen}
         onClose={() => setRulesOpen(false)}
         onLoadOfficialExample={handleLoadOfficialExample}
+      />
+
+      {/* 5. Formal & Pedagogical Aspects Modal (README.md / BNCC / Computação) */}
+      <PedagogicalModal
+        isOpen={pedagogicalOpen}
+        onClose={() => setPedagogicalOpen(false)}
       />
     </div>
   );

@@ -60,7 +60,7 @@ export const ObjectiveCardPreview: React.FC<ObjectiveCardPreviewProps> = ({
   return (
     <div
       onClick={() => showCardSelector && onSelectCard(cardIndex)}
-      className={`flex items-center gap-3 p-2.5 rounded-lg border transition-colors ${
+      className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-lg border transition-colors ${
         activeCard.completed
           ? 'bg-[#132a1f] border-[#22c55e]/50'
           : isSelected && showCardSelector
@@ -69,13 +69,13 @@ export const ObjectiveCardPreview: React.FC<ObjectiveCardPreviewProps> = ({
       } ${showCardSelector ? 'cursor-pointer' : ''}`}
     >
       {/* Mini 3x3 Objective Card representation matching physical card colors */}
-      <div className="relative p-1.5 rounded bg-[#855341] border border-[#4a2b1d] shrink-0">
+      <div className="relative p-1 sm:p-1.5 rounded bg-[#855341] border border-[#4a2b1d] shrink-0">
         {/* Top orientation arrow */}
         <div
           className="w-0 h-0 mx-auto mb-0.5 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-b-[5px] border-b-[#24110b]"
           title="Topo da Carta"
         />
-        <div className="grid grid-cols-3 w-[84px] h-[84px] border border-[#2b140d]">
+        <div className="grid grid-cols-3 w-[66px] h-[66px] sm:w-[76px] sm:h-[76px] lg:w-[84px] lg:h-[84px] border border-[#2b140d]">
           {activeCard.currentBoard.map((piece, sqIdx) => {
             const isDark = sqIdx % 2 === 0;
             const pieceMatchesBoard =
@@ -92,7 +92,7 @@ export const ObjectiveCardPreview: React.FC<ObjectiveCardPreviewProps> = ({
               >
                 {piece && (
                   <span
-                    className={`text-lg leading-none select-none -rotate-45 transition-transform ${
+                    className={`text-sm sm:text-base lg:text-lg leading-none select-none -rotate-45 transition-transform ${
                       pieceMatchesBoard
                         ? 'text-[#052e16] drop-shadow-[0_0_2px_rgba(74,222,128,0.9)]'
                         : 'text-[#140d0a]'
@@ -107,13 +107,13 @@ export const ObjectiveCardPreview: React.FC<ObjectiveCardPreviewProps> = ({
         </div>
         {activeCard.completed && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded">
-            <Check className="w-7 h-7 text-[#4ade80]" />
+            <Check className="w-6 h-6 lg:w-7 lg:h-7 text-[#4ade80]" />
           </div>
         )}
       </div>
 
       {/* Card Metadata & Level 2 / Level 3 Action Buttons */}
-      <div className="flex flex-col justify-between min-w-[138px]">
+      <div className="flex flex-col justify-between min-w-[116px] sm:min-w-[138px]">
         <div>
           <div className="flex items-center justify-between gap-2 text-xs text-[#cbb8a4]">
             <span className="font-semibold text-white">

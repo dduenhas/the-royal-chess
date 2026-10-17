@@ -272,8 +272,8 @@ export const RoyalStudyCanvas: React.FC<RoyalStudyCanvasProps> = ({
     controls.dampingFactor = 0.06;
     controls.maxPolarAngle = Math.PI / 2 - 0.08;
     controls.minPolarAngle = 0.05;
-    controls.minDistance = 6.5;
-    controls.maxDistance = 20;
+    controls.minDistance = 5.5;
+    controls.maxDistance = 28;
     controls.target.set(0, 0.4, 0.25);
     sceneObjectsRef.current.controls = controls;
 
@@ -732,6 +732,7 @@ export const RoyalStudyCanvas: React.FC<RoyalStudyCanvasProps> = ({
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
+      sceneObjectsRef.current.presetDirty = true;
     };
     window.addEventListener('resize', onResize);
 
@@ -746,18 +747,52 @@ export const RoyalStudyCanvas: React.FC<RoyalStudyCanvasProps> = ({
       const st = stateRef.current;
       const sc = sceneObjectsRef.current;
 
-      // 1. Camera Preset Smooth Damping
+      // 1. Camera Preset Smooth Damping (Desktop untouched; Mobile & Tablet aspect-compensated)
       if (sc.presetDirty) {
+        const aspect = camera.aspect;
+        const isMobilePortrait = aspect < 0.72;
+        const isTabletOrNarrow = aspect >= 0.72 && aspect < 1.15;
+
+        // Distance multiplier for narrow screens so the board + cards fit horizontally
+        const zoomOutFactor = isMobilePortrait
+          ? THREE.MathUtils.clamp(1.05 / Math.max(aspect, 0.42), 1.35, 2.05)
+          : isTabletOrNarrow
+          ? THREE.MathUtils.clamp(1.18 / aspect, 1.05, 1.38)
+          : 1.0;
+
+        // Vertical offset (Z shift) on mobile/tablet so the 3D box sits above the bottom HUD dock
+        const zTargetOffset = isMobilePortrait
+          ? 1.55
+          : isTabletOrNarrow
+          ? 0.65
+          : 0.0;
+
         if (st.cameraPreset === 'OVERHEAD') {
-          _camTargetPos.set(-0.2, 13.8, 0.65);
-          _camLookTarget.set(-0.2, 0.4, 0.55);
+          _camTargetPos.set(
+            -0.2,
+            13.8 * zoomOutFactor,
+            0.65 + zTargetOffset
+          );
+          _camLookTarget.set(-0.2, 0.4, 0.55 + zTargetOffset);
         } else if (st.cameraPreset === 'ANGLED') {
-          _camTargetPos.set(-3.8, 9.6, 8.8);
-          _camLookTarget.set(-0.3, 0.4, 0.5);
+          _camTargetPos.set(
+            -3.8 * (isMobilePortrait ? 0.85 : 1),
+            9.6 * zoomOutFactor,
+            8.8 * zoomOutFactor + zTargetOffset
+          );
+          _camLookTarget.set(-0.3, 0.4, 0.5 + zTargetOffset);
         } else {
-          // TABLETOP default
-          _camTargetPos.set(0.0, 10.8, 8.2);
-          _camLookTarget.set(-0.2, 0.4, 0.55);
+          // TABLETOP default (100% identical on desktop where zoomOutFactor=1 and zTargetOffset=0)
+          _camTargetPos.set(
+            isMobilePortrait ? -0.35 : 0.0,
+            10.8 * zoomOutFactor,
+            8.2 * zoomOutFactor + zTargetOffset
+          );
+          _camLookTarget.set(
+            isMobilePortrait ? -0.35 : -0.2,
+            0.4,
+            0.55 + zTargetOffset
+          );
         }
 
         camera.position.x = THREE.MathUtils.damp(camera.position.x, _camTargetPos.x, 5, dt);
@@ -878,7 +913,7 @@ export const RoyalStudyCanvas: React.FC<RoyalStudyCanvasProps> = ({
   return (
     <div
       ref={mountRef}
-      className="relative w-screen h-screen overflow-hidden cursor-grab active:cursor-grabbing"
+      className="relative w-screen h-screen overflow-hidden touch-none cursor-grab active:cursor-grabbing"
       aria-label="Tabuleiro 3D The Royal Study"
     />
   );
