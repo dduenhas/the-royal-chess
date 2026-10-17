@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
+  <title id="title">Tabuleiro 3×3 do The Royal Study</title>
+  <desc id="desc">Grade A1C3 com casas escuras nos cantos e no centro, e a posição inicial do exemplo do manual.</desc>
+  <rect width="920" height="560" rx="18" fill="#f6f0e6"/>
+  <text x="40" y="42" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="26">O tabuleiro cabe na tampa da caixa</text>
+  <text x="40" y="68" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Nove casas. Cinco peças. Quatro casas ficam vazias de propósito.</text>
+
+  <!-- board -->
+  <g transform="translate(48,108)">
+    <rect x="-8" y="-8" width="392" height="392" rx="8" fill="#2a1a12"/>
+    <!-- files -->
+    <text x="62" y="-18" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">A</text>
+    <text x="187" y="-18" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">B</text>
+    <text x="312" y="-18" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">C</text>
+    <!-- ranks -->
+    <text x="-22" y="70" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">3</text>
+    <text x="-22" y="195" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">2</text>
+    <text x="-22" y="320" text-anchor="middle" fill="#24160f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700">1</text>
+
+    <!-- squares: dark even indices -->
+    <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#f6f0e6">
+      <rect x="0" y="0" width="125" height="125" fill="#7a4630"/>
+      <text x="10" y="20">A3</text>
+      <rect x="125" y="0" width="125" height="125" fill="#f3e0c4"/>
+      <text x="135" y="20" fill="#6b3a22">B3</text>
+      <rect x="250" y="0" width="125" height="125" fill="#7a4630"/>
+      <text x="260" y="20">C3</text>
+      <rect x="0" y="125" width="125" height="125" fill="#f3e0c4"/>
+      <text x="10" y="145" fill="#6b3a22">A2</text>
+      <rect x="125" y="125" width="125" height="125" fill="#7a4630"/>
+      <text x="135" y="145">B2</text>
+      <rect x="250" y="125" width="125" height="125" fill="#f3e0c4"/>
+      <text x="260" y="145" fill="#6b3a22">C2</text>
+      <rect x="0" y="250" width="125" height="125" fill="#7a4630"/>
+      <text x="10" y="270">A1</text>
+      <rect x="125" y="250" width="125" height="125" fill="#f3e0c4"/>
+      <text x="135" y="270" fill="#6b3a22">B1</text>
+      <rect x="250" y="250" width="125" height="125" fill="#7a4630"/>
+      <text x="260" y="270">C1</text>
+    </g>
+
+    <!-- pieces of the official example start -->
+    <g font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700" text-anchor="middle">
+      <g transform="translate(187,62)">
+        <circle r="28" fill="#fbf6ee" stroke="#24160f" stroke-width="2"/>
+        <text y="7" fill="#24160f">D</text>
+      </g>
+      <g transform="translate(312,62)">
+        <circle r="28" fill="#fbf6ee" stroke="#24160f" stroke-width="2"/>
+        <text y="7" fill="#24160f">B</text>
+      </g>
+      <g transform="translate(62,187)">
+        <circle r="28" fill="#fbf6ee" stroke="#24160f" stroke-width="2"/>
+        <text y="7" fill="#24160f">R</text>
+      </g>
+      <g transform="translate(312,187)">
+        <circle r="28" fill="#fbf6ee" stroke="#24160f" stroke-width="2"/>
+        <text y="7" fill="#24160f">C</text>
+      </g>
+      <g transform="translate(62,312)">
+        <circle r="28" fill="#fbf6ee" stroke="#24160f" stroke-width="2"/>
+        <text y="7" fill="#24160f">T</text>
+      </g>
+    </g>
+  </g>
+
+  <text x="48" y="530" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Posição inicial do exemplo do manual. A fileira 1 fica embaixo, como no xadrez.</text>
+
+  <!-- legend -->
+  <g transform="translate(500,118)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="0" y="0" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="20">Como ler a grade</text>
+    <g transform="translate(0,28)">
+      <rect width="28" height="28" fill="#7a4630"/>
+      <text x="40" y="19" fill="#24160f" font-size="15">Casa escura: os 4 cantos e o centro (B2).</text>
+    </g>
+    <g transform="translate(0,70)">
+      <rect width="28" height="28" fill="#f3e0c4" stroke="#c4b09a"/>
+      <text x="40" y="19" fill="#24160f" font-size="15">Casa clara: o meio de cada lado.</text>
+    </g>
+    <text x="0" y="132" fill="#24160f" font-size="15" font-weight="700">As cinco peças</text>
+    <text x="0" y="158" fill="#3d2b1f" font-size="15">R Rei · D Dama · T Torre · B Bispo · C Cavalo</text>
+    <text x="0" y="198" fill="#24160f" font-size="15" font-weight="700">Duas regras que a cor torna visíveis</text>
+    <text x="0" y="226" fill="#3d2b1f" font-size="15">O bispo só vive nas casas escuras.</text>
+    <text x="0" y="250" fill="#3d2b1f" font-size="15">O cavalo pode saltar, mas nunca pisa em B2.</text>
+    <text x="0" y="292" fill="#24160f" font-size="15" font-weight="700">O que o jogo pede</text>
+    <text x="0" y="320" fill="#3d2b1f" font-size="15">Levar estas cinco peças até a figura</text>
+    <text x="0" y="342" fill="#3d2b1f" font-size="15">da carta, no menor número de lances.</text>
+    <text x="0" y="364" fill="#3d2b1f" font-size="15">Não há captura. Casa ocupada é parede.</text>
+  </g>
+</svg>
