@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 390" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
   <title id="title">Exemplo oficial resolvido em quatro lances</title>
   <desc id="desc">Cavalo para A3, torre para C1, rei para B1 e dama para A2.</desc>
-  <rect width="1120" height="390" rx="18" fill="#f6f0e6"/>
+  <rect width="1120" height="470" rx="18" fill="#f6f0e6"/>
   <text x="28" y="38" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="24">O exemplo do manual cabe em quatro lances</text>
-  <text x="28" y="62" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">A peça com aro dourado é a que acabou de se mover. Ninguém captura ninguém: cada lance só abre caminho.</text>
+  <text x="28" y="62" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">A peÃ§a com aro dourado Ã© a que acabou de se mover. NinguÃ©m captura ninguÃ©m: cada lance sÃ³ abre caminho.</text>
 
   <defs>
     <g id="d">
@@ -17,7 +17,7 @@
   <!-- helper boards drawn explicitly -->
   <!-- START -->
   <g transform="translate(24,88)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">Início</text>
+    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">InÃ­cio</text>
     <g transform="translate(0,10)" font-size="13" font-weight="700" text-anchor="middle">
       <use href="#d"/><use href="#l" x="40"/><text x="60" y="26" fill="#24160f">D</text><use href="#d" x="80"/><text x="100" y="26" fill="#f6f0e6">B</text>
       <use href="#l" y="40"/><text x="20" y="66" fill="#24160f">R</text><use href="#d" x="40" y="40"/><use href="#l" x="80" y="40"/><text x="100" y="66" fill="#24160f">C</text>
@@ -25,11 +25,11 @@
     </g>
   </g>
 
-  <text x="168" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">’</text>
+  <text x="168" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">â†’</text>
 
   <!-- 1 knight A3 -->
   <g transform="translate(196,88)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">1. Cavalo ’ A3</text>
+    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">1. Cavalo â†’ A3</text>
     <g transform="translate(0,10)" font-size="13" font-weight="700" text-anchor="middle">
       <use href="#d"/><circle cx="20" cy="20" r="15" fill="none" stroke="#c4923a" stroke-width="3"/><text x="20" y="25" fill="#f6f0e6">C</text>
       <use href="#l" x="40"/><text x="60" y="26" fill="#24160f">D</text>
@@ -39,11 +39,11 @@
     </g>
   </g>
 
-  <text x="340" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">’</text>
+  <text x="340" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">â†’</text>
 
   <!-- 2 rook C1 -->
   <g transform="translate(368,88)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">2. Torre ’ C1</text>
+    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">2. Torre â†’ C1</text>
     <g transform="translate(0,10)" font-size="13" font-weight="700" text-anchor="middle">
       <use href="#d"/><text x="20" y="26" fill="#f6f0e6">C</text>
       <use href="#l" x="40"/><text x="60" y="26" fill="#24160f">D</text>
@@ -54,11 +54,11 @@
     </g>
   </g>
 
-  <text x="512" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">’</text>
+  <text x="512" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">â†’</text>
 
   <!-- 3 king B1 -->
   <g transform="translate(540,88)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">3. Rei ’ B1</text>
+    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">3. Rei â†’ B1</text>
     <g transform="translate(0,10)" font-size="13" font-weight="700" text-anchor="middle">
       <use href="#d"/><text x="20" y="26" fill="#f6f0e6">C</text>
       <use href="#l" x="40"/><text x="60" y="26" fill="#24160f">D</text>
@@ -70,11 +70,11 @@
     </g>
   </g>
 
-  <text x="684" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">’</text>
+  <text x="684" y="160" fill="#c4923a" font-size="22" font-family="Georgia, serif">â†’</text>
 
   <!-- 4 queen A2 = target -->
   <g transform="translate(712,88)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">4. Dama ’ A2</text>
+    <text x="60" y="0" text-anchor="middle" fill="#24160f" font-size="13" font-weight="700">4. Dama â†’ A2</text>
     <g transform="translate(0,10)" font-size="13" font-weight="700" text-anchor="middle">
       <use href="#d"/><text x="20" y="26" fill="#f6f0e6">C</text>
       <use href="#l" x="40"/>
@@ -99,7 +99,9 @@
     </g>
   </g>
 
-  <text x="28" y="300" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Por que esta ordem, e não outra: o cavalo salta para A3 e libera C2. A torre atravessa a fileira 1 vazia até C1. O rei desce na diagonal para B1 e libera A2. Só então a dama entra em A2.</text>
-  <text x="28" y="324" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Quatro lances é o mínimo desse par de posições. Um caminho com cinco lances também chega na carta, mas no jogo ele perde para quem viu o caminho de quatro.</text>
-  <text x="28" y="360" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Letras: R rei, D dama, T torre, B bispo, C cavalo. O triângulo dourado na carta marca a orientação: no nível 1 ela não gira.</text>
+  <text x="28" y="300" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Por que esta ordem, e nÃ£o outra: o cavalo salta para A3 e libera C2. A torre atravessa a fileira 1 vazia atÃ© C1.</text>
+  <text x="28" y="322" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">O rei desce na diagonal para B1 e libera A2. SÃ³ entÃ£o a dama entra em A2.</text>
+  <text x="28" y="352" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Quatro lances Ã© o mÃ­nimo desse par de posiÃ§Ãµes.</text>
+  <text x="28" y="374" fill="#3d2b1f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Um caminho com cinco lances tambÃ©m chega na carta, mas no jogo ele perde para quem viu o caminho de quatro.</text>
+  <text x="28" y="408" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Letras: R rei, D dama, T torre, B bispo, C cavalo. O triÃ¢ngulo dourado na carta marca a orientaÃ§Ã£o: no nÃ­vel 1 ela nÃ£o gira.</text>
 </svg>

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
-  <title id="title">Tabuleiro 3×3 do The Royal Study</title>
-  <desc id="desc">Grade A1C3 com casas escuras nos cantos e no centro, e a posição inicial do exemplo do manual.</desc>
+  <title id="title">Tabuleiro 3Ã—3 do The Royal Study</title>
+  <desc id="desc">Grade A1C3 com casas escuras nos cantos e no centro, e a posiÃ§Ã£o inicial do exemplo do manual.</desc>
   <rect width="920" height="560" rx="18" fill="#f6f0e6"/>
   <text x="40" y="42" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="26">O tabuleiro cabe na tampa da caixa</text>
-  <text x="40" y="68" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Nove casas. Cinco peças. Quatro casas ficam vazias de propósito.</text>
+  <text x="40" y="68" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Nove casas. Cinco peÃ§as. Quatro casas ficam vazias de propÃ³sito.</text>
 
   <!-- board -->
   <g transform="translate(48,108)">
@@ -64,7 +64,7 @@
     </g>
   </g>
 
-  <text x="48" y="530" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Posição inicial do exemplo do manual. A fileira 1 fica embaixo, como no xadrez.</text>
+  <text x="48" y="530" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">PosiÃ§Ã£o inicial do exemplo do manual. A fileira 1 fica embaixo, como no xadrez.</text>
 
   <!-- legend -->
   <g transform="translate(500,118)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
@@ -77,14 +77,14 @@
       <rect width="28" height="28" fill="#f3e0c4" stroke="#c4b09a"/>
       <text x="40" y="19" fill="#24160f" font-size="15">Casa clara: o meio de cada lado.</text>
     </g>
-    <text x="0" y="132" fill="#24160f" font-size="15" font-weight="700">As cinco peças</text>
-    <text x="0" y="158" fill="#3d2b1f" font-size="15">R Rei · D Dama · T Torre · B Bispo · C Cavalo</text>
-    <text x="0" y="198" fill="#24160f" font-size="15" font-weight="700">Duas regras que a cor torna visíveis</text>
-    <text x="0" y="226" fill="#3d2b1f" font-size="15">O bispo só vive nas casas escuras.</text>
+    <text x="0" y="132" fill="#24160f" font-size="15" font-weight="700">As cinco peÃ§as</text>
+    <text x="0" y="158" fill="#3d2b1f" font-size="15">R Rei Â· D Dama Â· T Torre Â· B Bispo Â· C Cavalo</text>
+    <text x="0" y="198" fill="#24160f" font-size="15" font-weight="700">Duas regras que a cor torna visÃ­veis</text>
+    <text x="0" y="226" fill="#3d2b1f" font-size="15">O bispo sÃ³ vive nas casas escuras.</text>
     <text x="0" y="250" fill="#3d2b1f" font-size="15">O cavalo pode saltar, mas nunca pisa em B2.</text>
     <text x="0" y="292" fill="#24160f" font-size="15" font-weight="700">O que o jogo pede</text>
-    <text x="0" y="320" fill="#3d2b1f" font-size="15">Levar estas cinco peças até a figura</text>
-    <text x="0" y="342" fill="#3d2b1f" font-size="15">da carta, no menor número de lances.</text>
-    <text x="0" y="364" fill="#3d2b1f" font-size="15">Não há captura. Casa ocupada é parede.</text>
+    <text x="0" y="320" fill="#3d2b1f" font-size="15">Levar estas cinco peÃ§as atÃ© a figura</text>
+    <text x="0" y="342" fill="#3d2b1f" font-size="15">da carta, no menor nÃºmero de lances.</text>
+    <text x="0" y="364" fill="#3d2b1f" font-size="15">NÃ£o hÃ¡ captura. Casa ocupada Ã© parede.</text>
   </g>
 </svg>

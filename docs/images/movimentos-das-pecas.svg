@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 470" role="img" aria-labelledby="title desc">
-  <title id="title">Movimentos das cinco peças no tabuleiro 3×3</title>
+  <title id="title">Movimentos das cinco peÃ§as no tabuleiro 3Ã—3</title>
   <desc id="desc">Rei, dama, torre, bispo e cavalo, com as casas legais marcadas em verde.</desc>
   <rect width="1100" height="470" rx="18" fill="#f6f0e6"/>
-  <text x="32" y="40" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="26">Cada peça é um tipo de passo</text>
-  <text x="32" y="64" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Pontos verdes são casas vazias alcançáveis a partir da peça destacada. No jogo real, uma peça no caminho interrompe rei, dama, torre e bispo.</text>
+  <text x="32" y="40" fill="#24160f" font-family="Georgia, 'Times New Roman', serif" font-size="26">Cada peÃ§a Ã© um tipo de passo</text>
+  <text x="32" y="64" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Pontos verdes sÃ£o casas vazias alcanÃ§Ã¡veis a partir da peÃ§a destacada. No jogo real, uma peÃ§a no caminho interrompe rei, dama, torre e bispo.</text>
 
   <defs>
     <g id="cellDark">
@@ -35,7 +35,7 @@
       <use href="#cellDark" x="92" y="92"/>
     </g>
     <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">1 casa, qualquer lado.</text>
-    <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">Não pula.</text>
+    <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">NÃ£o pula.</text>
   </g>
 
   <!-- DAMA on A1: up A2 A3, right B1 C1, diag B2 C3 -->
@@ -70,7 +70,7 @@
       <use href="#cellLight" x="46" y="92"/><use href="#dot" x="46" y="92"/>
       <use href="#cellDark" x="92" y="92"/>
     </g>
-    <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">Só na horizontal</text>
+    <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">SÃ³ na horizontal</text>
     <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">e na vertical.</text>
   </g>
 
@@ -88,7 +88,7 @@
       <use href="#cellLight" x="46" y="92"/>
       <use href="#cellDark" x="92" y="92"/><use href="#dot" x="92" y="92"/>
     </g>
-    <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">Só na diagonal.</text>
+    <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">SÃ³ na diagonal.</text>
     <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">Permanece no escuro.</text>
   </g>
 
@@ -101,16 +101,16 @@
       <use href="#cellDark" x="92"/>
       <use href="#cellLight" y="46"/>
       <use href="#cellDark" x="46" y="46"/>
-      <text x="69" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#9b3a2f">×</text>
+      <text x="69" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#9b3a2f">Ã—</text>
       <use href="#cellLight" x="92" y="46"/><use href="#dot" x="92" y="46"/>
       <use href="#cellDark" y="92"/><use href="#piece" y="92"/><text x="23" y="120" text-anchor="middle" font-size="12" font-weight="700" fill="#24160f">C</text>
       <use href="#cellLight" x="46" y="92"/>
       <use href="#cellDark" x="92" y="92"/>
     </g>
     <text x="69" y="176" text-anchor="middle" fill="#3d2b1f" font-size="13">Salto em L.</text>
-    <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">O × é B2, proibido.</text>
+    <text x="69" y="194" text-anchor="middle" fill="#3d2b1f" font-size="13">O Ã— Ã© B2, proibido.</text>
   </g>
 
-  <text x="32" y="430" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">No cavalo, o × marca a casa central, sempre ilegal para ele. O salto em L ignora peças no caminho; a casa de chegada precisa estar vazia.</text>
-  <text x="32" y="452" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">A dama desenhada em A1 alcança A2, A3, B1, C1, B2 e C3. Se alguma dessas casas tivesse peça, o raio pararia antes dela.</text>
+  <text x="32" y="430" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">No cavalo, o Ã— marca a casa central, sempre ilegal para ele. O salto em L ignora peÃ§as no caminho; a casa de chegada precisa estar vazia.</text>
+  <text x="32" y="452" fill="#6b5344" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">A dama desenhada em A1 alcanÃ§a A2, A3, B1, C1, B2 e C3. Se alguma dessas casas tivesse peÃ§a, o raio pararia antes dela.</text>
 </svg>

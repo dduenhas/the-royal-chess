@@ -6,7 +6,7 @@ O desenvolvimento desta versão foi feito por **Diego Duenhas** ([diegoduenhas.c
 
 Esta página explica a filosofia, a mecânica e o uso pedagógico. As regras do produto físico continuam sendo as da Philos.
 
-![Tabuleiro 3×3 com a posição inicial do exemplo do manual](docs/images/tabuleiro-3x3.svg)
+![Tabuleiro 3×3 com a posição inicial do exemplo do manual](docs/images/tabuleiro-3x3.png)
 
 ## A filosofia: um estudo, não uma batalha
 
@@ -69,7 +69,7 @@ Uma carta mostra um desenho das cinco peças já colocadas. O trabalho é fazer 
 
 ### Como cada uma anda
 
-![Movimentos do rei, da dama, da torre, do bispo e do cavalo](docs/images/movimentos-das-pecas.svg)
+![Movimentos do rei, da dama, da torre, do bispo e do cavalo](docs/images/movimentos-das-pecas.png)
 
 | Peça | O passo | O cuidado |
 | --- | --- | --- |
@@ -92,7 +92,7 @@ Dá para jogar sozinho, em dupla no mesmo aparelho, ou contra o robô da versão
 
 ### Os níveis
 
-![Nível 1 com a carta fixa, nível 2 com giro, nível 3 com espelho e o desafio de duas cartas](docs/images/niveis.svg)
+![Nível 1 com a carta fixa, nível 2 com giro, nível 3 com espelho e o desafio de duas cartas](docs/images/niveis.png)
 
 - **Nível 1.** A carta fica na orientação em que foi colocada na mesa. Só as peças se movem.
 - **Nível 2.** Durante a execução, a carta pode girar. Um giro de 90°, para qualquer lado, custa **1 lance**. Um giro de 180° custa **2 lances**. Girar é uma ação, tão real quanto mover o rei.
@@ -108,7 +108,7 @@ O manual da Philos mostra um desafio que fecha em quatro lances:
 3. Rei para o inferior centro (B1).
 4. Dama para a meio esquerda (A2).
 
-![Sequência do exemplo oficial, do início até a carta de objetivo](docs/images/exemplo-quatro-lances.svg)
+![Sequência do exemplo oficial, do início até a carta de objetivo](docs/images/exemplo-quatro-lances.png)
 
 A ordem importa. O cavalo salta para A3 e deixa C2 livre. A torre atravessa a primeira fileira, que está vazia, e ocupa C1. O rei desce em diagonal para B1 e abre A2. A dama entra em A2. O desenho da carta aparece. Qualquer volta extra também chegaria lá, e seria um lance a mais do que o necessário.
 
